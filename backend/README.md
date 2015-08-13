@@ -5,10 +5,11 @@ Currently, an authentication library (django-rest-auth) is used for login/regist
 Plan is to add more Django modules to handle status updates/reads/etc.
 
 # Installation
-cd backend/ <br />
-pip install -r requirements.pip <br />
-python manage.py syncdb --noinput <br />
-python manage.py runserver <br />
-
+```
+cd backend/ 
+pip install -r requirements.pip  
+python manage.py syncdb --noinput  
+python manage.py runserver  
+```
 
 
