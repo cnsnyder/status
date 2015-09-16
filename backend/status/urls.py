@@ -33,7 +33,11 @@ urlpatterns = patterns('',
 
     url(r'^rest-auth/', include('rest_auth.urls')),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
-    url(r'^account/', include('allauth.urls')),
+
+    #  account or accounts??
+    url(r'^account/', include('allauth.urls')), # ORIGINAL
+    url(r'^accounts/', include('allauth.urls')), # allauth
+
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/profile/$', RedirectView.as_view(url='/'), name='profile-redirect'),
 )
