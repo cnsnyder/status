@@ -18,25 +18,57 @@
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <!-- MATERIAL -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="assets/app.css"/>
     <!-- endbuild -->
   </head>
-  <body ng-app="MainApp" ng-controller="MasterCtrl">
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
 
-    <div class="container">
-        <div class="header">
-          <ul class="nav nav-pills pull-right">
-            <li class="active"><a ng-href="#/">Home</a></li>
-          </ul>
-          <h3 class="text-muted">Angular Django Registration Auth Demo</h3>
-        </div>
+  <body ng-app="MainApp" layout="row" ng-controller="UserController as ul">
 
-        <!-- Add your site or application content here -->
-        <div ng-view=""></div>
+    <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+                  md-component-id="left"
+                  md-is-locked-open="$mdMedia('gt-sm')">
+
+      <md-toolbar class="md-whiteframe-z1">
+        <h1>Users</h1>
+      </md-toolbar>
+
+      <md-list>
+        <md-list-item ng-repeat="it in ul.users">
+            <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
+              <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
+              {{it.name}}
+            </md-button>
+        </md-list-item>
+      </md-list>
+
+    </md-sidenav>
+
+
+    <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
+
+      <md-toolbar layout="row" class="md-whiteframe-z1">
+        <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
+          <md-icon md-svg-icon="menu" ></md-icon>
+        </md-button>
+        <h1>Angular Material - Starter App</h1>
+      </md-toolbar>
+
+      <md-content flex id="content">
+          <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
+          <h2>{{ul.selected.name}}</h2>
+          <p>{{ul.selected.content}}</p>
+
+          <md-button class="contact" md-no-ink ng-click="ul.showContactOptions($event)" aria-label="Contact User">
+            <md-tooltip>Contact {{ ul.selected.name }}</md-tooltip>
+            <md-icon md-svg-icon="share"></md-icon>
+          </md-button>
+        </md-content>
+
     </div>
 
+    <!-- SCRIPTS -->
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -69,8 +101,13 @@
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <!-- MAIN -->
         <script src="scripts/app.js"></script>
 
+        <!-- USER MODULE -->
+        <script src="scripts/users/users.config.js"></script>
+        <script src="scripts/users/UserController.js"></script>
+        <script src="scripts/users/UserService.js"></script>
 
         <!-- AUTH MODULE -->
         <script src="scripts/auth/dauth.config.js"></script>
@@ -92,5 +129,5 @@
         <script src="scripts/auth/services/validate.service.js"></script>
         <!-- endbuild -->
 
-</body>
+  </body>
 </html>

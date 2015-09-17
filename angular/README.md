@@ -1,3 +1,9 @@
+
+Frontend UI for Status
+======================
+This is the Angular Material front-end. Below is the README for 'Django Rest Auth', the package that handles authentication. 
+
+
 AngularJS Module for [Django REST Auth](https://github.com/Tivix/django-rest-auth)
 ==================================================================================
 
